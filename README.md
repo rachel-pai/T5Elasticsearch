@@ -1,4 +1,4 @@
-# Elasticsearch meets BERT
+# Elasticsearch meets T5/Bert/Your favorite pretrained NLP model 
 
 Below is a job search example:
 
@@ -8,6 +8,7 @@ Below is a job search example:
 
 ![System architecture](./docs/sys_architecture.png)
 
+I use pretrained models from [huggingface transformers](https://github.com/huggingface/transformers).
 ## Getting Started
 
 ### 1. Download a pretrained T5/BERT model
