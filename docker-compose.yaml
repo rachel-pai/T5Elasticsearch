@@ -1,0 +1,45 @@
+version: '3.7'
+services:
+  myapp_db:
+      image: mysql
+      restart: always
+      container_name: myapp_db
+      ports:
+          - "3306:3306"
+      command: --init-file /data/application/init.sql
+      volumes:
+          - ./my_sql/init.sql:/data/application/init.sql
+      environment:
+          MYSQL_ROOT_USER: rootuser
+          MYSQL_ROOT_PASSWORD: rootpass
+          MYSQL_DATABASE: docdb
+          MYSQL_USER: otheruser
+          MYSQL_PASSWORD: otheruserpass
+
+  web:
+    build: ./web
+    ports:
+      - "5000:5000"
+    environment:
+      - TOKEN_DIR=${TOKEN_DIR}
+      - MODEL_DIR=${MODEL_DIR}
+      - MODEL_NAME=${MODEL_NAME}
+    volumes:
+      - "${TOKEN_DIR}:/models/tokenizer"
+      - "${MODEL_DIR}:/models/model"
+    depends_on:
+      - elasticsearch
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.3.2
+    ports:
+      - "9200:9200"
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    tty: true
+    environment:
+      discovery.type: single-node
+
+volumes:
+  es-data:
+    driver: local
