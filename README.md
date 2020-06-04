@@ -6,7 +6,7 @@ Below is a job search example:
 
 ## System architecture
 
-![System architecture](./docs/sys_architecture.png)
+![System architecture](./pics/sys_architecture.png)
 
 I use pretrained models from [huggingface transformers](https://github.com/huggingface/transformers).
 ## Getting Started
