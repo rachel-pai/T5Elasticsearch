@@ -98,7 +98,7 @@ def get_emb(inputs_list,model_name,max_length=512):
         return embeddings.numpy().tolist()
 ```
 
-You can change the code and use your favorite pretrained model. For example, you can use (GPT2 model)[https://huggingface.co/transformers/model_doc/gpt2.html#tfgpt2model].
+You can change the code and use your favorite pretrained model. For example, you can use [GPT2 model](https://huggingface.co/transformers/model_doc/gpt2.html#tfgpt2model).
 
 ## Customize your Elasticsearch
 you can also customize your elasticsearch by [using your own score function](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-script-score-query.html) instead of ` cosineSimilarity` in `.\web\app.py`.
