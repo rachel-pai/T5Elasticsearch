@@ -27,7 +27,7 @@ def get_emb(inputs_list,model_name,max_length=512):
     elif 'bert' in model_name:
         tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased')
         model = TFBertModel.from_pretrained('bert-base-multilingual-cased')
-        batch_encoding = tokenizer.batch_encode_plus(["this is","the second","the thrid"], max_length=max_length, pad_to_max_length=True)
+        batch_encoding = tokenizer.batch_encode_plus(inputs_list, max_length=max_length, pad_to_max_length=True)
 
         outputs = model(tf.convert_to_tensor(batch_encoding['input_ids'])) # shape: (batch,sequence length, hidden state)
         embeddings = tf.reduce_mean(outputs[0],1)
